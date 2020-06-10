@@ -26,9 +26,7 @@ def index():
 @app.route("/login")
 def login():
     session["state"] = str(uuid.uuid4())
-    # Technically we could use empty list [] as scopes to do just sign in,
-    # here we choose to also collect end user consent upfront
-    auth_url = _build_auth_url(scopes=app_config.SCOPE, state=session["state"])
+    auth_url = _build_auth_url(scopes=request.args.get("scope"), state=session["state"])
     return render_template("login.html", auth_url=auth_url, version=msal.__version__)
 
 @app.route(app_config.REDIRECT_PATH)  # Its absolute URL must match your app's redirect_uri set in AAD
@@ -60,7 +58,7 @@ def logout():
 def graphcall():
     token = _get_token_from_cache(app_config.SCOPE)
     if not token:
-        return redirect(url_for("login"))
+        return redirect(url_for("login", scope=" ".join(app_config.SCOPE)))
     graph_data = requests.get(  # Use token to call downstream service
         app_config.ENDPOINT,
         headers={'Authorization': 'Bearer ' + token['access_token']},
