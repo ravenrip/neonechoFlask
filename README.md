@@ -1,5 +1,3 @@
-## Basic dev command to start flask: 'py -m flask run --host localhost --port 5000'
-
 ---
 
 page_type: sample
@@ -17,13 +15,17 @@ languages:
 
 This is a Python web application that uses the Flask framework and the Microsoft identity platform to sign in users and make authenticated calls to the Microsoft Graph API.
 
+## Basic dev command to start flask
+
+'py -m flask run --host localhost --port 5000'
+
 To get started with this sample, you have two options:
 
 - Use the Azure portal to create the Azure AD applications and related objects. Follow the steps in
   [Quickstart: Add sign-in with Microsoft to a Python web app](https://docs.microsoft.com/azure/active-directory/develop/web-app-quickstart?pivots=devlang-python).
 - Use PowerShell scripts that automatically create the Azure AD applications and related objects (passwords, permissions, dependencies) for you, and then modify the configuration files. Follow the steps in the [App Creation Scripts README](./AppCreationScripts/AppCreationScripts.md).
 
-# Deployment
+## Deployment
 
 Once you finish testing this web app locally, you can deploy it to your production.
 You may choose any web app hosting services you want.
